@@ -1,0 +1,43 @@
+<center>
+   <h1>Car Show Page</h1>
+   <strong>Name</strong>
+   <%= @car.name %>
+   <br>
+   <strong>ID</strong>
+   <%= @car.id %>
+   <br>
+   <br>
+   <table>
+      <tr>
+       <td><strong>ID</strong></td>
+       <td><strong>Part_Name</strong></td>
+      </tr>
+         <% @car.parts.each do |p| %>
+      <tr>
+            <td><%= p.id %></td>
+            <td><%= p.name %></td>
+      </tr> 
+    <% end %>
+   </table>
+   <br>
+   <%= link_to :Edit_Parts, edit_car_path(@car) %>
+
+   <br>
+   <br>
+   <%
+=begin%>
+ <% if @car.car_image_blob %>
+      <%= image_tag @car.car_image %>
+   <% end %>    
+<%
+=end%>
+   <% if @car.car_file.attached? %>
+      <% if @car.car_file.content_type.include?("image") %>
+         <%= image_tag url_for(@car.car_file), style: "width:300px;height:auto;"%>
+      <% elsif @car.car_file.content_type.include?("video") %>
+         <%= video_tag url_for(@car.car_file), controls: true, style: "width:300px;height:auto;" %>  
+      <% else %>
+         <button><%= link_to "Play Audio", @car.car_file , class: "html5" %></button>       
+      <% end %>
+   <% end %>
+</center>

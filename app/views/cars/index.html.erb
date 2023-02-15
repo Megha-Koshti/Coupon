@@ -1,0 +1,29 @@
+<center>
+   <h1>cars</h1>
+<table class="table table-dark table-sm">
+
+      <tr>
+         <td><strong>ID</strong></td>
+         <td><strong>Name</strong></td>
+         <td><strong>Show</strong></td>
+         <td><strong>Delete</strong></td>
+         <td><strong>Parts</strong></td>
+         <td><strong>Contains</strong></td>
+      </tr>
+      <% @cars.each do |a| %>
+      <tr>
+         <td><%= a.id %></td>
+         <td><%= a.name %></td>
+         <td><%= link_to :view, car_path(a) %></td>
+         <td><%= button_to :Delete, car_path(a),method: :delete %></td>
+         <td><% a.parts.each do |p| %>
+                <%= p.name %>,
+             <% end %>  
+         </td>
+         <td><%= a.car_file.content_type%></td>
+      </tr>
+         <% end %>
+   </table>
+   <br>
+   <%= link_to :Add, new_car_path %>
+</center>

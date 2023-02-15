@@ -1,0 +1,17 @@
+<center>
+   <%= form_with model: @car do |f| %>
+      <strong><%= f.label :Name %></strong>
+      <%= f.text_field :name%>
+      <%= f.label :car_file %>
+      <%= f.file_field :car_file %>
+      <br><br>
+      <strong><%= f.label :Parts %></strong>
+      <br>
+      <% @parts.each do |p| %>
+         <%= check_box_tag"part[]", p.id %>
+         <%= p.name %>
+      <% end %>
+      <br><br>
+      <%= f.submit %>
+   <% end %>
+</center>
